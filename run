@@ -1,0 +1,11 @@
+#!/bin/bash
+
+docker run \
+  --rm \
+  --name rebase-labs-proj \
+  -w /app \
+  -v $(pwd):/app \
+  -p 4000:3000 \
+  --network rebase-labs\
+  ruby \
+  bash -c "bundle install && ruby server.rb"\

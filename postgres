@@ -1,0 +1,11 @@
+#!/bin/bash
+
+docker run \
+  --rm \
+  --name postgres-proj \
+  -w /app \
+  -e POSTGRES_USER="admin"\
+  -e POSTGRES_PASSWORD="password"\
+  -v $(pwd)/data-rebase-labs:/var/lib/postgresql/data \
+  --network rebase-labs\
+  postgres \
