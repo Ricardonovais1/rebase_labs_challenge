@@ -1,4 +1,4 @@
-<h1 align="center">Rebase labs</h1>
+<h1 align="left">Rebase labs</h1>
 
 Uma app web para listagem de exames médicos.
 
@@ -11,6 +11,27 @@ Uma app web para listagem de exames médicos.
 ![Javascript](https://img.shields.io/badge/Javascript-%23F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black)
 ![HTML](https://img.shields.io/badge/HTML-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+
+---
+
+### Setup
+
+Crie uma network para rodar o projeto:
+
+   docker create network rebase-labs
+
+Abra um terminal e copie o comando abaixo para executar a app ruby em seu container dedicado:
+
+   bash run
+
+En outro terminal execute o container do servidor postgres:
+
+   bash postgres
+
+Em outro terminal rode o comando abaixo para popular o banco de dados com o arquivo csv:
+
+   docker exec -it rebase-labs-proj bash
+   ruby import_from_csv.rb
 
 ---
 
