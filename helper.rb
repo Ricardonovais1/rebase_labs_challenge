@@ -26,6 +26,7 @@ module TestsAll
 
     tests = results.map do |row|
       {
+        id: row['id'],
         cpf: row['patient_cpf'],
         'nome paciente': row['patient_name'],
         'email paciente': row['patient_email'],

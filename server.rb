@@ -15,7 +15,6 @@ get '/hello' do
 end
 
 
-
 Rack::Handler::Puma.run(
   Sinatra::Application,
   Port: 3000,
