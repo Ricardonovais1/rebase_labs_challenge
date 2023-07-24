@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'pg'
 
 db_config = {
@@ -8,9 +10,9 @@ db_config = {
 
 $connect_pg = PG.connect(db_config)
 
-$connect_pg.exec("DROP TABLE IF EXISTS exams CASCADE;")
-$connect_pg.exec("DROP TABLE IF EXISTS doctors CASCADE;")
-$connect_pg.exec("DROP TABLE IF EXISTS patients CASCADE;")
+$connect_pg.exec('DROP TABLE IF EXISTS exams CASCADE;')
+$connect_pg.exec('DROP TABLE IF EXISTS doctors CASCADE;')
+$connect_pg.exec('DROP TABLE IF EXISTS patients CASCADE;')
 
 $connect_pg.exec("CREATE TABLE IF NOT EXISTS doctors (
   id SERIAL PRIMARY KEY,

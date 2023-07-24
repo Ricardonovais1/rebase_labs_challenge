@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'pg'
 require 'json'
-require_relative 'db_populate'
+require_relative '../db_populate'
 
 module TestsAll
   def self.get_all_tests

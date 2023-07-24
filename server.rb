@@ -1,20 +1,20 @@
+# frozen_string_literal: true
+
 require 'sinatra'
 require 'rack/handler/puma'
 require 'csv'
 require 'rack'
 require 'json'
-require_relative 'helper.rb'
+require_relative 'app/helper'
+require_relative 'app/controllers/tests_controller'
 
-get '/tests' do
-  content_type :json
-  TestsAll.get_all_tests
-end
+set :views, File.join(__dir__, 'views')
+
+set :erb, layout: :'layouts/application'
 
 get '/hello' do
   'Hello world!'
 end
-
-
 
 Rack::Handler::Puma.run(
   Sinatra::Application,
