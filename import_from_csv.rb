@@ -1,4 +1,4 @@
 require_relative 'db_populate'
 
-CSVIMPORTER.import_data_from_csv
+DbPopulate.import_data_from_csv
 

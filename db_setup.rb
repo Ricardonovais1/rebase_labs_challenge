@@ -8,6 +8,7 @@ db_config = {
 
 $connect_pg = PG.connect(db_config)
 
+$connect_pg.exec("DROP TABLE IF EXISTS tests CASCADE;")
 $connect_pg.exec("DROP TABLE IF EXISTS exams CASCADE;")
 $connect_pg.exec("DROP TABLE IF EXISTS doctors CASCADE;")
 $connect_pg.exec("DROP TABLE IF EXISTS patients CASCADE;")
@@ -20,14 +21,26 @@ $connect_pg.exec("CREATE TABLE IF NOT EXISTS doctors (
   email VARCHAR(100)
 )")
 
-$connect_pg.exec(" CREATE TABLE IF NOT EXISTS exams (
+
+$connect_pg.exec("CREATE TABLE IF NOT EXISTS exams (
   id SERIAL PRIMARY KEY,
   token VARCHAR(6),
-  type VARCHAR(30),
-  limits VARCHAR(30),
-  result INTEGER,
   result_date DATE,
+  patient_id INTEGER REFERENCES patients(id)
   doctor_id INTEGER REFERENCES doctors(id)
+)")
+
+$connect_pg.exec("CREATE TABLE IF NOT EXISTS tests (
+  id SERIAL PRIMARY KEY,
+  result INTEGER,
+  test_type_id INTEGER REFERENCES test_types(id)
+  exam_id INTEGER REFERENCES exams(id)
+)")
+
+$connect_pg.exec("CREATE TABLE IF NOT EXISTS test_types (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(30),
+  limits VARCHAR(30),
 )")
 
 $connect_pg.exec("CREATE TABLE IF NOT EXISTS patients (
@@ -39,5 +52,5 @@ $connect_pg.exec("CREATE TABLE IF NOT EXISTS patients (
   address VARCHAR(300),
   city VARCHAR(100),
   state VARCHAR(30),
-  exam_id INTEGER REFERENCES exams(id)
 )")
+

@@ -1,15 +1,19 @@
 require 'csv'
 require_relative 'db_setup'
 
-module CSVIMPORTER
+module CsvImporter
   def self.import_data_from_csv
     csv_data = CSV.read('./data.csv', headers: true, col_sep: ';')
 
     doctors_map = {}
 
+    exams_map = {}
+
     csv_data.each do |row|
 
       token = row['token resultado exame']
+
+      exam_id = exams_map[token]
 
       crm = row['crm médico']
 
@@ -28,9 +32,15 @@ module CSVIMPORTER
       end
 
       $connect_pg.exec_params(
-        "INSERT INTO exams (token, type, limits, result, result_date, doctor_id)
-        VALUES ($1, $2, $3, $4, $5, $6)",
-        [row['token resultado exame'], row['tipo exame'], row['limites tipo exame'], row['resultado tipo exame'], row['data exame'], doctor_id]
+        "INSERT INTO exams (token, result_date, doctor_id)
+        VALUES ($1, $2, $3)",
+        [row['token resultado exame'], row['data exame'], doctor_id]
+      )
+
+      $connect_pg.exec_params(
+        "INSERT INTO tests (type, limits, result, exam_id)
+        VALUES ($1, $2, $3, $4)",
+        [row['tipo exame'], row['limites tipo exame'], row['resultado tipo exame'], exam_id]
       )
 
       exam_id = $connect_pg.exec_params(

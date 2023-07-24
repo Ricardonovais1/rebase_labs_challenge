@@ -5,7 +5,7 @@ require_relative 'db_populate'
 module TestsAll
   def self.get_all_tests
     results = $connect_pg.exec("
-      SELECT exams.id, exams.token, exams.type, exams.limits, exams.result, exams.result_date,
+      SELECT tests.id, tests.type, tests.limits, tests.result,
             patients.cpf AS patient_cpf,
             patients.name AS patient_name,
             patients.email AS patient_email,
@@ -19,13 +19,20 @@ module TestsAll
             doctors.email AS doctor_email,
             exams.token AS exam_token
 
-      FROM exams
-      INNER JOIN doctors ON exams.doctor_id = doctors.id
-      INNER JOIN patients ON exams.id = patients.exam_id
+      FROM tests
+      JOIN exams ON tests.exam_id = exams.id
+      JOIN doctors ON exams.doctor_id = doctors.id
+      JOIN patients ON exams.id = patients.exam_id
+      GROUP BY
+      tests.id, tests.type, tests.limits, tests.result,
+      exams.id, exams.token, exams.result_date,
+      doctors.id, doctors.crm, doctors.crm_state, doctors.name,
+      patients.id, patients.cpf, patients.name, patients.email, patients.birthday, patients.address, patients.city, patients.state
     ")
 
-    tests = results.map do |row|
+    individual_tests = results.map do |row|
       {
+        id: row['id'],
         cpf: row['patient_cpf'],
         'nome paciente': row['patient_name'],
         'email paciente': row['patient_email'],
@@ -44,6 +51,6 @@ module TestsAll
       }
     end
 
-    tests.to_json
+    individual_tests.to_json
   end
 end

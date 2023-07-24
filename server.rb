@@ -14,7 +14,13 @@ get '/hello' do
   'Hello world!'
 end
 
-
+get '/joao' do
+  "<html>
+    <body>
+      <h1>Olá João</h1>
+    </body>
+  </html>"
+end
 
 Rack::Handler::Puma.run(
   Sinatra::Application,
