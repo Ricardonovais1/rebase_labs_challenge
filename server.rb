@@ -2,29 +2,19 @@ require 'sinatra'
 require 'rack/handler/puma'
 require 'csv'
 require 'rack'
+require 'json'
+require_relative 'helper.rb'
 
 get '/tests' do
-  rows = CSV.read("./data.csv", headers: true, col_sep: ';')
-
-  columns = rows.shift
-
-  rows.map do |row|
-    row.each_with_object({}).with_index do |(cell, acc), idx|
-      column = columns[idx]
-      acc[column] = cell
-    end
-  end.to_json
+  content_type :json
+  TestsAll.get_all_tests
 end
 
 get '/hello' do
   'Hello world!'
 end
 
-get '/sample' do
-  rows = CSV.read("./sample.csv", headers: true, col_sep: ';')
 
-  rows.to_json
-end
 
 Rack::Handler::Puma.run(
   Sinatra::Application,

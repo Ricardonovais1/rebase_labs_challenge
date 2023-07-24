@@ -6,6 +6,8 @@ Uma app web para listagem de exames médicos.
 
 ### Tech Stack
 
+![Docker](https://img.shields.io/badge/Docker-%232496ED.svg?style=for-the-badge&logo=docker&logoColor=white)
+
 * Docker
 * Ruby
 * Javascript
@@ -162,7 +164,7 @@ Response:
 ---
 
 ### Feature 3: Exibir detalhes de um exame em formato HTML a partir do token do resultado
-Nesta etapa vamos implementar uma nova funcionalidade: pesquisar os resultados com base em um token de exame. 
+Nesta etapa vamos implementar uma nova funcionalidade: pesquisar os resultados com base em um token de exame.
 
 Você deve criar um endpoint no Sinatra (C) que devolve, com base no token enviado no request, os detalhes de um exame em formato JSON.
 
