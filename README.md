@@ -1,4 +1,4 @@
-# Rebase Labs
+<h1 align="center">Rebase labs</h1>
 
 Uma app web para listagem de exames médicos.
 
@@ -299,30 +299,4 @@ Neste momento, o processo de importar o CSV está manual com chamada direta ao e
 * _Dica 1_: o botão ficará "estático" no HTML
 * _Dica 2_: a ação do botão deverá fazer o pedido à API (`POST /import`), **enviando o conteúdo** do CSV no corpo do request
 
----
 
-### Como as sessões serão estruturadas
-Iremos realizar 4 sessões de aprendizado nos principais temas que serão abordados durante o laboratório.
-
-* Sessão 1: Docker, Sinatra e SQL
-* Sessão 2: HTTP e Web (Javascript, HTML e CSS)
-* Sessão 3: Processamento assíncrono (Sidekiq)
-* Sessão 4: Easter egg, tirar dúvidas finais e encerramento
-
----
-
-### Nossos valores
-Aqui listamos alguns valores que compartilhamos sobre engenharia de software.
-
-#### Valorizamos documentação
-Tente documentar o máximo possível sobre sua aplicação em arquivos `Markdown` (como este aqui por exemplo) ou então em páginas wiki.
-
-Uma boa documentação é a *base* para a comunicação e boa saúde de um projeto de software.
-
-#### Valorizamos testes
-Testes são uma parte crucial no desenvolvimento de software. Se teu projeto não tem testes, não há garantias automatizadas de que ele vai continuar funcionando ao longo do tempo, à medida que mais código é adicionado nele.
-
----
-
-### Dúvidas?
-Em caso de dúvidas sobre qualquer um dos labs ou conteúdo das sessões, fique à vontade para conversar na ferramenta de comunicação do programa.
