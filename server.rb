@@ -3,17 +3,12 @@ require 'rack/handler/puma'
 require 'csv'
 require 'rack'
 require 'json'
-require_relative 'helper.rb'
+require_relative 'tests_all'
 
 get '/tests' do
   content_type :json
   TestsAll.get_all_tests
 end
-
-get '/hello' do
-  'Hello world!'
-end
-
 
 Rack::Handler::Puma.run(
   Sinatra::Application,
