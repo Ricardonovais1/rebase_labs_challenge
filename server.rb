@@ -10,11 +10,6 @@ get '/tests' do
   TestsAll.get_all_tests
 end
 
-
-
-
-
-
 Rack::Handler::Puma.run(
   Sinatra::Application,
   Port: 3000,
