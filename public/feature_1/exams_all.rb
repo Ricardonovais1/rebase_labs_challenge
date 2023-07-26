@@ -32,29 +32,37 @@ module ExamsAll
       JOIN doctors ON exams.doctor_id = doctors.id;
     ")
 
+
+
     exams_per_token = results.group_by { |row| row['exam_token'] }.map do |token, rows|
+
+      doctor_info = {
+        'nome médico': rows.first['doctor_name'],
+        'crm médico': rows.first['doctor_crm'],
+        'crm médico estado': rows.first['doctor_crm_state'],
+        'email médico': rows.first['doctor_email'],
+      }
+
       tests_for_exam = rows.map do |row|
         {
           'tipo exame': row['test_type'],
           'limites tipo exame': row['test_limits'],
           'resultado': row['test_result']
         }
+
       end
 
       {
         'token resultado exame': token,
         'nome paciente': rows.first['patient_name'],
         'data exame': rows.first['exam_result_date'],
-        cpf: rows.first['patient_cpf'],
+        'cpf': rows.first['patient_cpf'],
         'email paciente': rows.first['patient_email'],
         'data nascimento paciente': rows.first['patient_birthday'],
         'endereço/rua paciente': rows.first['patient_address'],
         'cidade paciente': rows.first['patient_city'],
         'estado paciente': rows.first['patient_state'],
-        'nome médico': rows.first['doctor_name'],
-        'crm médico': rows.first['doctor_crm'],
-        'crm médico estado': rows.first['doctor_crm_state'],
-        'email médico': rows.first['doctor_email'],
+        'médico responsável': doctor_info,
         'testes deste exame': tests_for_exam
       }
     end

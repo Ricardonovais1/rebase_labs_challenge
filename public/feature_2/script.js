@@ -83,10 +83,10 @@ fetch(url)
         examDataDiv.appendChild(doctorInfo);
 
         const doctorDataRaw = {
-          Nome: test["nome médico"],
-          Crm: test["crm médico"],
-          'Crm estado': test["crm médico estado"],
-          Email: test["email médico"],
+          Nome: test['médico responsável']["nome médico"],
+          Crm: test['médico responsável']["crm médico"],
+          'Crm estado': test['médico responsável']["crm médico estado"],
+          Email: test['médico responsável']["email médico"],
         };
 
         const doctorAttributeTitles = Object.keys(doctorDataRaw);
