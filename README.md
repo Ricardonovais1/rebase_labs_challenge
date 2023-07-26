@@ -14,7 +14,16 @@ Uma app web para listagem de exames médicos.
 
 ---
 
-### Setup
+### Como rodar o projeto
+
+Escolha um diretório no seu computador e rode:
+
+```
+$ git clone git@github.com:Ricardonovais1/rebase_labs_challenge.git
+```
+```
+$ cd rebase_labs_challenge
+```
 
 Crie uma network para rodar o projeto:
 
@@ -22,14 +31,14 @@ Crie uma network para rodar o projeto:
 $ docker create network rebase-labs
 ```
 
-Abra um terminal e copie o comando abaixo para executar a app ruby em seu container dedicado:
+Crie os 3 containers do projeto, em terminais separados:
 
 ```
 $ bash run
 ```
-
-En outro terminal execute o container do servidor postgres:
-
+```
+$ bash run_server_2
+```
 ```
 $ bash postgres
 ```
@@ -37,13 +46,42 @@ Em outro terminal rode o comando abaixo para popular o banco de dados com o arqu
 
 ```
 $ docker exec -it rebase-labs-proj bash
+```
+```
 $ ruby import_from_csv.rb
 ```
 ---
 
-### Premissa
+Rotas para os endpoints do servidor 1:
 
-A premissa principal deste laboratório é que a app **não seja feita em Rails**, devendo seguir o padrão **Sinatra** que há neste projeto, ou então se preferir, podendo utilizar outro web framework que **não** seja Rails, por ex. grape, padrino, rack, etc ou até mesmo um HTTP/TCP server "na mão".
+   * http://localhost:4001/tests --> Endpoint com todos os testes.
+   * http://localhost:4001/exams --> Endpoint com todos os exames e seus respectivos testes.
+
+---
+
+Rota para acessar os exames no "frontend", configurado no servidor da aplicação 2:
+
+   * http://localhost:4004/partial-results --> Acessar todos os exames no cliente da aplicação.
+---
+
+## Banco de dados
+
+A estrutura do banco de dados possui a seguinte estrutura:
+
+![de](img/Diagrama_DB_REBASE_LABS.png)
+
+---
+### Preview página de exames
+
+Layout página de exames:
+
+   * Exame com a abas de detalhes aberta:
+
+![aberto](img/Exame_zoom.png)
+
+   * Exames com as abas de detalhes fechadas:
+
+![fechado](img/Exame_aba_fechada.png)
 
 ---
 
