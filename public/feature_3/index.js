@@ -29,7 +29,7 @@ fetch(url)
 
 
 const searchForm = document.getElementById('searchform');
-const errorMessage = document.querySelector('.error-message');
+const errorMessage = document.querySelector('.search-message');
 
 setTimeout(()=> {
   const examLinks = document.querySelectorAll('.exam-link');
@@ -57,6 +57,7 @@ searchForm.addEventListener('submit', (e)=> {
     setTimeout(()=>{
       errorMessage.textContent = '';
       searchInput.value = '';
+      errorMessage.value = 'Busque exame';
       searchInput.focus();
     }, 3000);
   } else {
@@ -64,6 +65,7 @@ searchForm.addEventListener('submit', (e)=> {
     setTimeout(()=>{
       errorMessage.textContent = '';
       searchInput.value = '';
+      errorMessage.value = 'Busque exame';
       searchInput.focus();
     }, 3000)
   }
