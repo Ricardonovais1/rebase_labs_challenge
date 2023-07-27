@@ -7,24 +7,28 @@
   --grey-color: #f8f8f8;
 }
 
-#title-details {
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-details {
   font-family: var(--primary-font);
   font-weight: 700;
   color: var(--primary-color);
 }
 
-.exam-data {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease-out;
+.exams {
+  width: 90vw;
 }
 
-.exam-data table {
+table {
   width: 100%;
   margin: 0;
 }
 
-.exam-data th {
+th {
   background-color: var(--light-color);
   font-family: var(--primary-font);
   font-weight: 400;
@@ -32,7 +36,7 @@
   padding: .3rem;
 }
 
-.exam-data td {
+td {
   background-color: var(--light-color);
   font-family: var(--primary-font);
   font-weight: 200;
@@ -45,4 +49,9 @@
   font-family: var(--primary-font);
   color: var(--primary-color);
   font-weight: 500;
+}
+
+.exam-data table {
+  width: 100%;
+  margin: 0;
 }
