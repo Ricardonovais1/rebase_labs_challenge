@@ -8,7 +8,6 @@
 }
 
 * {
-  /* display: block; */
   box-sizing: border-box;
   margin: 0;
 }
@@ -75,7 +74,12 @@ body {
 .search-container {
   display: flex;
   gap: .5rem;
-  align-items: flex-end;
+  align-items: center;
+}
+
+.search-message {
+  margin-top: .6rem;
+  margin-right: .8rem;
 }
 
 .search-container p {
