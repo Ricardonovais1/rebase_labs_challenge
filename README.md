@@ -31,13 +31,16 @@ Crie uma network para rodar o projeto:
 $ docker create network rebase-labs
 ```
 
-Crie os 3 containers do projeto, em terminais separados:
+Crie os 4 containers do projeto, em terminais separados:
 
 ```
-$ bash run
+$ bash bin/run_server_1
 ```
 ```
-$ bash run_server_2
+$ bash bin/run_server_2
+```
+```
+$ bash bin/run_server_3
 ```
 ```
 $ bash postgres
@@ -45,7 +48,7 @@ $ bash postgres
 Em outro terminal rode o comando abaixo para popular o banco de dados com o arquivo csv:
 
 ```
-$ docker exec -it rebase-labs-proj bash
+$ docker exec -it rebase-labs-server-1 bash
 ```
 ```
 $ ruby import_from_csv.rb
@@ -75,7 +78,7 @@ Rotas para os endpoints do servidor 1:
             "tipo exame": "hemácias",
             "limites tipo exame": "45-52",
             "resultado": "97"
-      }]
+}]
 ```
    * http://localhost:4001/exams --> Endpoint com todos os exames e seus respectivos testes, response:
 
@@ -172,7 +175,7 @@ Rotas para os endpoints do servidor 1:
 
 Rota para acessar os exames no "frontend", configurado no servidor da aplicação 2:
 
-   * http://localhost:4004/partial-results --> Acessar todos os exames no cliente da aplicação.
+   * http://localhost:4004/results --> Acessar todos os exames no cliente da aplicação.
 ---
 
 ## Banco de dados

@@ -1,6 +1,7 @@
 require 'pg'
 require 'json'
-require_relative 'db_populate'
+
+$connect_pg = PG.connect(host: 'postgres-proj', user: 'admin', password: 'password')
 
 module ExamsAll
   def self.get_all_exams

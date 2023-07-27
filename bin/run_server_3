@@ -2,10 +2,10 @@
 
 docker run \
   --rm \
-  --name rebase-labs-proj-s2 \
+  --name rebase-labs-server-3 \
   -w /app \
   -v $(pwd):/app \
-  -p 4004:4004\
+  -p 4008:4008\
   --network rebase-labs\
   ruby \
-  bash -c "bundle install && ruby server_2.rb"\
+  bash -c "bundle install && ruby server_3.rb"\
