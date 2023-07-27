@@ -7,6 +7,18 @@
   --grey-color: #f8f8f8;
 }
 
+* {
+  /* display: block; */
+  box-sizing: border-box;
+  margin: 0;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content:center;
+  margin-bottom: 2rem;
+}
 
 body {
   display: flex;
@@ -14,11 +26,62 @@ body {
   justify-content: center;
 }
 
+.topnav {
+  display: flex;
+  width: 100%;
+  background-color: var(--light-color);
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
 
-h1 {
+.topnav .search-container {
+  float: right;
+}
+
+.topnav input[type=text] {
+  padding: 6px;
+  padding-left: 12px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 6px;
+  padding-left: .4rem;
+  padding-right: .4rem;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.topnav .search-container button:hover {
+  background: #ccc;
+}
+
+.title {
   font-family: var(--primary-font);
-  color: black;
+  color: var(--primary-color);
   text-align: center;
+}
+
+.search-container {
+  display: flex;
+  gap: .5rem;
+  align-items: flex-end;
+}
+
+.search-container p {
+  font-family: var(--primary-font);
+  color: var(--primary-color);
+  margin-left: .5rem;
 }
 
 .exams {

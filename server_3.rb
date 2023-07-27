@@ -19,7 +19,7 @@ get '/exams' do
 end
 
 get '/exams/:token' do
-  exam_data = ExamData.exam_data_by_token(params[:token])
+  exam_data = ExamData.exam_data_by_token(params[:token].upcase)
 
   template = File.open('./public/feature_3/show.html').read
   template.gsub('{%exam.token%}', exam_data[0]['exam_token'])

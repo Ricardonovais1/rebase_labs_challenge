@@ -28,3 +28,47 @@ fetch(url)
   });
 
 
+const searchForm = document.getElementById('searchform');
+const errorMessage = document.querySelector('.error-message');
+
+setTimeout(()=> {
+  const examLinks = document.querySelectorAll('.exam-link');
+  const examTokens = [];
+
+searchForm.addEventListener('submit', (e)=> {
+  e.preventDefault()
+  const searchInput = document.querySelector('.search-input');
+  const userInput = searchInput.value.toLowerCase();
+  const tokenParameter = userInput.trim();
+
+  examLinks.forEach(link => {
+    let token = link.href.split('/').pop().toLowerCase();
+    examTokens.push(token);
+    return [...new Set(examTokens)]
+  });
+
+  console.log(examTokens)
+
+  if (userInput && examTokens.includes(userInput)) {
+    window.location.href = `http://localhost:4008/exams/${tokenParameter}`;
+    searchInput.value = '';
+  } else if (userInput && !examTokens.includes(userInput)) {
+    errorMessage.textContent = 'Token inválido'
+    setTimeout(()=>{
+      errorMessage.textContent = '';
+      searchInput.value = '';
+      searchInput.focus();
+    }, 3000);
+  } else {
+    errorMessage.textContent = 'Insira um token'
+    setTimeout(()=>{
+      errorMessage.textContent = '';
+      searchInput.value = '';
+      searchInput.focus();
+    }, 3000)
+  }
+});
+
+}, 1000)
+
+
