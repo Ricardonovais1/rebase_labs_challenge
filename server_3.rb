@@ -5,6 +5,7 @@ require 'rack'
 require 'json'
 require 'pg'
 require_relative './public/feature_1/exams_all'
+require_relative './public/feature_3/exam_data'
 
 set :public_folder, File.dirname(__FILE__) + '/public/feature_3'
 
@@ -18,35 +19,7 @@ get '/exams' do
 end
 
 get '/exams/:token' do
-  $connect_pg = PG.connect(host: 'postgres-proj', user: 'admin', password: 'password')
-  exam_data = $connect_pg.exec("
-    SELECT
-
-        tests.id AS test_id,
-        patients.cpf AS patient_cpf,
-        patients.name AS patient_name,
-        patients.email AS patient_email,
-        patients.birthday AS patient_birthday,
-        patients.address AS patient_address,
-        patients.city AS patient_city,
-        patients.state AS patient_state,
-        doctors.name AS doctor_name,
-        doctors.crm AS doctor_crm,
-        doctors.crm_state AS doctor_crm_state,
-        doctors.email AS doctor_email,
-        exams.token AS exam_token,
-        exams.result_date AS exam_result_date,
-        tests.test_type AS test_type,
-        tests.limits AS test_limits,
-        tests.result AS test_result
-
-      FROM exams
-
-      JOIN tests ON exams.token = tests.token_id
-      JOIN patients ON exams.patient_id = patients.id
-      JOIN doctors ON exams.doctor_id = doctors.id
-
-      WHERE exams.token = $1;", [params[:token]])
+  exam_data = ExamData.exam_data_by_token(params[:token])
 
   template = File.open('./public/feature_3/show.html').read
   template.gsub('{%exam.token%}', exam_data[0]['exam_token'])
