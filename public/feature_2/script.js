@@ -140,8 +140,6 @@ fetch(url)
           })
         })
       }
-      examCollapse.appendChild(examDiv);
-
 
       function toggleInfo() {
         if (examDataDiv.style.maxHeight){
@@ -149,12 +147,11 @@ fetch(url)
         } else {
           examDataDiv.style.maxHeight = examDataDiv.scrollHeight + "px";
         }
-
         collHeader.classList.toggle("active");
       }
-
       examDivCover.addEventListener('click', toggleInfo);
 
+      examCollapse.appendChild(examDiv);
     });
   })
   .then(() => {

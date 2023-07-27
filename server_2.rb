@@ -6,12 +6,7 @@ require 'json'
 
 set :public_folder, File.dirname(__FILE__) + '/public/feature_2'
 
-get '/' do
-  'Página inicial Rebase Labs'
-end
-
-
-get '/partial-results' do
+get '/results' do
   File.open('./public/feature_2/index.html').read
 end
 
