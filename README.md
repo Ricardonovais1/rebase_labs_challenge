@@ -54,8 +54,6 @@ $ docker exec -it rebase-labs-server-1 bash
 $ ruby import_from_csv.rb
 ```
 ---
----
-
 ### [Enunciado Feature 1] Importar os dados do CSV para um database SQL
 
 A primeira versão original da API deverá ter apenas um endpoint `/tests`, que lê os dados de um arquivo CSV e renderiza no formato JSON. Você deve _modificar_ este endpoint para que, ao invés de ler do CSV, faça a leitura **diretamente de uma base de dados SQL**.
@@ -189,7 +187,6 @@ Rotas para os endpoints do servidor 1:
 ```
 
 ---
----
 
 ### [Enunciado Feature 2] Exibir listagem de exames no navegador Web
 Agora vamos exibir as mesmas informações da etapa anterior, mas desta vez de uma forma mais amigável ao usuário. Para isto, você deve criar uma nova aplicação, que conterá todo o código necessário para a web - HTML, CSS e Javascript.
@@ -219,7 +216,7 @@ Rota para acessar os exames no "frontend", configurado no servidor da aplicaçã
 ![aberto](img/Exame_zoom.png)
 
 ---
----
+
 
 ### [Enunciado Feature 3] Exibir detalhes de um exame em formato HTML a partir do token do resultado
 Nesta etapa vamos implementar uma nova funcionalidade: pesquisar os resultados com base em um token de exame.
@@ -237,10 +234,10 @@ Você deve implementar o endpoint `/tests/:token` que permita que o usuário da 
 
    ### Página com todos os exames (puxado do banco de dados), com input de pesquisa por token - http://localhost:4003/exams
 
-![index](img/Feature 3 Index.png)
+![index](img/Feature_3_Index.png)
 
    ### Página de detalhes do exame - http://localhost:4003/exams/:token
 
-![aberto](img/Exame_zoom.png)
+![aberto](img/Feature_3_Show.png)
 
 
