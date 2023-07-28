@@ -12,6 +12,6 @@ end
 
 Rack::Handler::Puma.run(
   Sinatra::Application,
-  Port: 4004,
+  Port: 4002,
   Host: '0.0.0.0'
 )

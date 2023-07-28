@@ -7,7 +7,7 @@ require_relative './public/feature_1/tests_all'
 require_relative './public/feature_1/exams_all'
 
 before do
-  headers 'Access-Control-Allow-Origin'  => 'http://localhost:4004',
+  headers 'Access-Control-Allow-Origin'  => 'http://localhost:4002',
           'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
 end
 
@@ -23,6 +23,6 @@ end
 
 Rack::Handler::Puma.run(
   Sinatra::Application,
-  Port: 3000,
+  Port: 4001,
   Host: '0.0.0.0'
 )

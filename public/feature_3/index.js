@@ -1,5 +1,5 @@
 const examList = new DocumentFragment();
-const url = "http://localhost:4008/api/exams";
+const url = "http://localhost:4003/api/exams";
 
 const exams = document.querySelector(".exams");
 
@@ -10,12 +10,8 @@ fetch(url)
       const examBtn = document.createElement("a");
       examBtn.classList.add("exam-link");
       examBtn.setAttribute("type", "button");
-      examBtn.setAttribute("href", `http://localhost:4008/exams/${exam['token resultado exame']}`);
+      examBtn.setAttribute("href", `http://localhost:4003/exams/${exam['token resultado exame']}`);
       examBtn.textContent = `Token: ${exam["token resultado exame"]} | Paciente: ${exam["nome paciente"]} | Data: ${exam["data exame"]}`;
-
-      document.addEventListener("DOMContentLoaded", function(event) {
-        alert('Hey')
-      });
 
       examList.appendChild(examBtn);
     });
@@ -47,10 +43,8 @@ searchForm.addEventListener('submit', (e)=> {
     return [...new Set(examTokens)]
   });
 
-  console.log(examTokens)
-
   if (userInput && examTokens.includes(userInput)) {
-    window.location.href = `http://localhost:4008/exams/${tokenParameter}`;
+    window.location.href = `http://localhost:4003/exams/${tokenParameter}`;
     searchInput.value = '';
   } else if (userInput && !examTokens.includes(userInput)) {
     errorMessage.textContent = 'Token inválido'
