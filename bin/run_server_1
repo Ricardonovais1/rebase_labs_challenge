@@ -5,7 +5,7 @@ docker run \
   --name rebase-labs-server-1 \
   -w /app \
   -v $(pwd):/app \
-  -p 4001:3000 \
+  -p 4001:4001 \
   --network rebase-labs\
   ruby \
   bash -c "bundle install && ruby server_1.rb"\

@@ -64,6 +64,6 @@ get '/exams/:token' do
 end
 Rack::Handler::Puma.run(
   Sinatra::Application,
-  Port: 4008,
+  Port: 4003,
   Host: '0.0.0.0'
 )

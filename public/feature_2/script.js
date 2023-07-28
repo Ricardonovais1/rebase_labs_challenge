@@ -14,21 +14,21 @@ fetch(url)
       examDivCover.classList.add("collapsible-cover");
 
       const collHeader = document.createElement("p");
-      collHeader.classList.add('exam-title');
+      collHeader.classList.add("exam-title");
       collHeader.textContent = `Token: ${test["token resultado exame"]} | Paciente: ${test["nome paciente"]} | Data: ${test["data exame"]}`;
       examDivCover.appendChild(collHeader);
       examDiv.appendChild(examDivCover);
 
-      const examDataDiv = document.createElement('div');
-      examDataDiv.classList.add('exam-data');
+      const examDataDiv = document.createElement("div");
+      examDataDiv.classList.add("exam-data");
       examDiv.appendChild(examDataDiv);
 
       makePatientTable();
 
       function makePatientTable() {
-        const patientDataTitle = document.createElement('h3');
-        patientDataTitle.textContent = 'Dados do paciente:';
-        patientDataTitle.classList.add('patient-data-title');
+        const patientDataTitle = document.createElement("h3");
+        patientDataTitle.textContent = "Dados do paciente:";
+        patientDataTitle.classList.add("patient-data-title");
         examDataDiv.appendChild(patientDataTitle);
 
         const patientInfo = document.createElement("table");
@@ -51,16 +51,16 @@ fetch(url)
 
         const patientAttributeTitles = Object.keys(patientDataRaw);
 
-        patientAttributeTitles.forEach(attribute => {
-          const patientTh = document.createElement('th');
+        patientAttributeTitles.forEach((attribute) => {
+          const patientTh = document.createElement("th");
           patientTh.textContent = attribute;
           patientInfoHeader.appendChild(patientTh);
         });
 
         const patientAttributes = Object.values(patientDataRaw);
 
-        patientAttributes.forEach(attribute => {
-          const patientTd = document.createElement('td');
+        patientAttributes.forEach((attribute) => {
+          const patientTd = document.createElement("td");
           patientTd.textContent = attribute;
           patientInfoBody.appendChild(patientTd);
         });
@@ -69,9 +69,9 @@ fetch(url)
       makeDoctorTable();
 
       function makeDoctorTable() {
-        const doctorDataTitle = document.createElement('h3');
-        doctorDataTitle.textContent = 'Médico responsável:';
-        doctorDataTitle.classList.add('doctor-data-title');
+        const doctorDataTitle = document.createElement("h3");
+        doctorDataTitle.textContent = "Médico responsável:";
+        doctorDataTitle.classList.add("doctor-data-title");
         examDataDiv.appendChild(doctorDataTitle);
 
         const doctorInfo = document.createElement("table");
@@ -83,24 +83,24 @@ fetch(url)
         examDataDiv.appendChild(doctorInfo);
 
         const doctorDataRaw = {
-          Nome: test['médico responsável']["nome médico"],
-          Crm: test['médico responsável']["crm médico"],
-          'Crm estado': test['médico responsável']["crm médico estado"],
-          Email: test['médico responsável']["email médico"],
+          Nome: test["médico responsável"]["nome médico"],
+           Crm: test["médico responsável"]["crm médico"],
+          "Crm estado": test["médico responsável"]["crm médico estado"],
+          Email: test["médico responsável"]["email médico"],
         };
 
         const doctorAttributeTitles = Object.keys(doctorDataRaw);
 
-        doctorAttributeTitles.forEach(attribute => {
-          const doctorTh = document.createElement('th');
+        doctorAttributeTitles.forEach((attribute) => {
+          const doctorTh = document.createElement("th");
           doctorTh.textContent = attribute;
           doctorInfoHeader.appendChild(doctorTh);
         });
 
         const doctorAttributes = Object.values(doctorDataRaw);
 
-        doctorAttributes.forEach(attribute => {
-          const doctorTd = document.createElement('td');
+        doctorAttributes.forEach((attribute) => {
+          const doctorTd = document.createElement("td");
           doctorTd.textContent = attribute;
           doctorInfoBody.appendChild(doctorTd);
         });
@@ -109,9 +109,9 @@ fetch(url)
       makeExamResultsTable();
 
       function makeExamResultsTable() {
-        const resultsDataTitle = document.createElement('h3');
-        resultsDataTitle.textContent = 'Resultados do exame:';
-        resultsDataTitle.classList.add('results-data-title');
+        const resultsDataTitle = document.createElement("h3");
+        resultsDataTitle.textContent = "Resultados do exame:";
+        resultsDataTitle.classList.add("results-data-title");
         examDataDiv.appendChild(resultsDataTitle);
 
         const examResultsInfo = document.createElement("table");
@@ -120,36 +120,40 @@ fetch(url)
         examDiv.appendChild(examResultsInfo);
         examDataDiv.appendChild(examResultsInfo);
 
-        const examResultsTitles = ['Categoria de exame', 'Limites', 'Resultado'];
+        const examResultsTitles = [
+          "Categoria de exame",
+          "Limites",
+          "Resultado",
+        ];
 
-        examResultsTitles.forEach(attribute => {
-          const examResultTh = document.createElement('th');
+        examResultsTitles.forEach((attribute) => {
+          const examResultTh = document.createElement("th");
           examResultTh.textContent = attribute;
           examResultsInfoHeader.appendChild(examResultTh);
         });
 
-        const examResultsDataRaw = test['testes deste exame'];
+        const examResultsDataRaw = test["testes deste exame"];
 
-        examResultsDataRaw.forEach(resultAttribute => {
-          const examResultsTr = document.createElement('tr');
+        examResultsDataRaw.forEach((resultAttribute) => {
+          const examResultsTr = document.createElement("tr");
           examResultsInfo.appendChild(examResultsTr);
-          Object.values(resultAttribute).forEach(attribute => {
-            const examResultsTd = document.createElement('td');
+          Object.values(resultAttribute).forEach((attribute) => {
+            const examResultsTd = document.createElement("td");
             examResultsTd.textContent = attribute;
             examResultsTr.appendChild(examResultsTd);
-          })
-        })
+          });
+        });
       }
 
       function toggleInfo() {
-        if (examDataDiv.style.maxHeight){
+        if (examDataDiv.style.maxHeight) {
           examDataDiv.style.maxHeight = null;
         } else {
           examDataDiv.style.maxHeight = examDataDiv.scrollHeight + "px";
         }
         collHeader.classList.toggle("active");
       }
-      examDivCover.addEventListener('click', toggleInfo);
+      examDivCover.addEventListener("click", toggleInfo);
 
       examCollapse.appendChild(examDiv);
     });
@@ -160,5 +164,3 @@ fetch(url)
   .catch(function (error) {
     console.log(error);
   });
-
-

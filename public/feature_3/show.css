@@ -22,7 +22,6 @@ header {
   width: 100%;
   display: flex;
   justify-content:center;
-  margin-bottom: 2rem;
 }
 
 .topnav {
@@ -46,6 +45,10 @@ header {
   padding-bottom: .5rem;
   border-radius: .3rem;
   color: var(--light-color);
+}
+
+.topnav a:hover {
+  background-color: #d93c66;
 }
 
 .title-details {
@@ -84,6 +87,8 @@ td {
   font-family: var(--primary-font);
   color: var(--primary-color);
   font-weight: 500;
+  margin-top: 1rem;
+  margin-bottom: .7rem;
 }
 
 .exam-data table {
