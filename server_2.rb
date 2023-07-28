@@ -10,6 +10,7 @@ get '/results' do
   File.open('./public/feature_2/index.html').read
 end
 
+
 Rack::Handler::Puma.run(
   Sinatra::Application,
   Port: 4002,
