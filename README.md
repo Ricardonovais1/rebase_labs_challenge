@@ -25,26 +25,12 @@ $ git clone git@github.com:Ricardonovais1/rebase_labs_challenge.git
 $ cd rebase_labs_challenge
 ```
 
-Crie uma network para rodar o projeto:
+Rode todos os servidores - Cria uma rede e executa containers dentro dela:
 
 ```
-$ docker create network rebase-labs
+$ docker compose up
 ```
 
-Crie os 4 containers do projeto, em terminais separados:
-
-```
-$ bash bin/run_server_1
-```
-```
-$ bash bin/run_server_2
-```
-```
-$ bash bin/run_server_3
-```
-```
-$ bash postgres
-```
 Em outro terminal rode o comando abaixo para popular o banco de dados a partir do arquivo csv:
 
 ```
@@ -54,7 +40,7 @@ $ docker exec -it rebase-labs-server-1 bash
 $ ruby import_from_csv.rb
 ```
 ---
-### [Enunciado Feature 1] Importar os dados do CSV para um database SQL
+## *[Enunciado Feature 1] Importar os dados do CSV para um database SQL*
 
 A primeira versão original da API deverá ter apenas um endpoint `/tests`, que lê os dados de um arquivo CSV e renderiza no formato JSON. Você deve _modificar_ este endpoint para que, ao invés de ler do CSV, faça a leitura **diretamente de uma base de dados SQL**.
 
@@ -64,7 +50,7 @@ Este passo de "importar" os dados do CSV para um **database SQL** (por ex. Postg
 
 
 
-## **SOLUÇÃO FEATURE 1:**
+## **PREVIEW FEATURE 1:**
 
 ### Estrutura do banco de dados
 
@@ -72,7 +58,7 @@ Este passo de "importar" os dados do CSV para um **database SQL** (por ex. Postg
 
 Rotas para os endpoints do servidor 1:
 
-   * http://localhost:4001/tests --> Endpoint com todos os testes, reponse:
+   ### * http://localhost:4001/tests --> Endpoint com todos os testes, reponse:
 
 ```
 [{
@@ -95,7 +81,7 @@ Rotas para os endpoints do servidor 1:
             "resultado": "97"
 }]
 ```
-   * http://localhost:4001/exams --> Endpoint com todos os exames e seus respectivos testes, response:
+   ### * http://localhost:4001/exams --> Endpoint com todos os exames e seus respectivos testes, response:
 
 ```
 [
@@ -188,7 +174,7 @@ Rotas para os endpoints do servidor 1:
 
 ---
 
-### [Enunciado Feature 2] Exibir listagem de exames no navegador Web
+### *[Enunciado Feature 2] Exibir listagem de exames no navegador Web*
 Agora vamos exibir as mesmas informações da etapa anterior, mas desta vez de uma forma mais amigável ao usuário. Para isto, você deve criar uma nova aplicação, que conterá todo o código necessário para a web - HTML, CSS e Javascript.
 
 Criar um endpoint do Sinatra (A) que devolve listagem de exames em formato JSON.
@@ -199,19 +185,19 @@ O objetivo aqui, neste passo, é carregar os dados de exames da API utilizando J
 
 
 
-## **SOLUÇÃO FEATURE 2:**
+## **PREVIEW FEATURE 2:**
 
-Rota para acessar os exames no "frontend", configurado no servidor da aplicação 2:
+### Rota para acessar os exames no "frontend", configurado no servidor da aplicação 2:
+.
 
-   * http://localhost:4002/results --> Acessar todos os exames no cliente da aplicação.
+###  http://localhost:4002/results --> Acessar todos os exames no cliente da aplicação.
+.
 
-### Layout página de exames...
-
-   ### ...com as abas de detalhes fechadas - http://localhost:4002/results
+### Layout página de exames com as abas de detalhes fechadas:
 
 ![fechado](img/Exame_aba_fechada.png)
 
-   ### ...com a abas de detalhes aberta:
+### Layout página de exames com a abas de detalhes aberta:
 
 ![aberto](img/Exame_zoom.png)
 

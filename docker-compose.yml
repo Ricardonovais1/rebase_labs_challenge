@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  s1:
+    image: ruby
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: bash -c "bundle install && ruby server_1.rb"
+    ports:
+      - "4001:4001"
+    depends_on:
+      - postgres-proj
+  s2:
+    image: ruby
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: bash -c "bundle install && ruby server_2.rb"
+    ports:
+      - "4002:4002"
+  s3:
+    image: ruby
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: bash -c "bundle install && ruby server_3.rb"
+    ports:
+      - "4003:4003"
+  postgres-proj:
+    image: postgres
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - ./data-rebase-labs:/var/lib/postgresql/data
+
+
+
+
