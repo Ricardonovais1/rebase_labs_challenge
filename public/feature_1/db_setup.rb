@@ -8,6 +8,10 @@ db_config = {
 
 $connect_pg = PG.connect(db_config)
 
+$connect_pg.exec("DROP TABLE IF EXISTS tests CASCADE;")
+$connect_pg.exec("DROP TABLE IF EXISTS exams CASCADE;")
+$connect_pg.exec("DROP TABLE IF EXISTS doctors CASCADE;")
+$connect_pg.exec("DROP TABLE IF EXISTS patients CASCADE;")
 
 $connect_pg.exec("CREATE TABLE IF NOT EXISTS patients (
   id SERIAL PRIMARY KEY,

@@ -9,47 +9,12 @@
 </head>
 <body>
   <h1>Selecione um arquivo CSV</h1>
-  <input type="file" id="csvFileInput">
-  <button onclick="handleUpload()">Enviar</button>
-
-  <script>
-    function handleUpload() {
-      const fileInput = document.getElementById('csvFileInput');
-      const file = fileInput.files[0];
-
-      if (!file) {
-        alert('Por favor, selecione um arquivo CSV.');
-        return;
-      }
-
-      if (file.type !== 'text/csv') {
-        alert('Por favor, selecione um arquivo CSV válido.');
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append('csvFile', file);
-
-      fetch('/import_csv', {
-        method: 'POST',
-        body: formData
-      }).then(response => {
-        if (response.ok) {
-          window.open("http://localhost:4002/results")
-
-          alert('Arquivo CSV enviado com sucesso!');
-        } else {
-          alert('Ocorreu um erro ao enviar o arquivo.');
-        }
-      }).catch(error => {
-        alert('Ocorreu um erro ao enviar o arquivo: ' + error.message);
-      });
-    }
-  </script>
-  <div class="exams">
-
+  <div class="upload-div">
+    <input type="file" id="csvFileInput">
+    <button class="send-btn">Enviar</button>
+    <button class="send-btn redirect-exams hide">Ver todos os exames</button>
   </div>
-  <!-- <script src="script.js"></script> -->
+  <script src="script.js"></script>
 </body>
 </html>
 

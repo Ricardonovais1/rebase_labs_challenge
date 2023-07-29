@@ -3,6 +3,7 @@
 :root {
   --primary-font: 'Raleway', sans-serif;
   --primary-color: #d31245;
+  --primary-color-hover: #b8113e;
   --light-color: #ffeef3;
   --grey-color: #f8f8f8;
 }
@@ -12,86 +13,62 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 
 h1 {
   font-family: var(--primary-font);
-  color: black;
+  color: var(--primary-color);
   text-align: center;
 }
 
-.exams {
+.upload-div {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 60vw;
+  align-self:center;
+  background-color: var(--light-color);
+  padding-left: 4rem;
+  padding-right: 4rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  border-radius: .3rem;
 }
 
-.collapsible {
-  margin-bottom: .8rem;
-  width: 90%;
-}
-
-.collapsible-cover {
-  background-color: var(--primary-color);
-  font-family: var(--primary-font);
-  font-weight: 700;
-  color: white;
-  cursor: pointer;
+#csvFileInput {
+  background-color: white;
   padding: .5rem;
-  padding-left: 1rem;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
+  border-radius: .4rem;
 }
 
-.exam-data {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease-out;
-}
-
-.exam-data table {
-  width: 100%;
-  margin: 0;
-}
-
-.exam-data th {
-  background-color: var(--light-color);
-  font-family: var(--primary-font);
-  font-weight: 400;
-  text-align: left;
-  padding: .3rem;
-}
-
-.exam-data td {
-  background-color: var(--light-color);
-  font-family: var(--primary-font);
-  font-weight: 200;
-  padding: .3rem;
-}
-
-.patient-data-title,
-.doctor-data-title,
-.results-data-title {
-  font-family: var(--primary-font);
-  color: var(--primary-color);
-  font-weight: 500;
-}
-
-.exam-title:after {
-  content: '\02795';
-  font-size: 13px;
+.send-btn {
+  margin-top: 1rem;
+  background-color: var(--primary-color);
   color: var(--light-color);
-  float: right;
-  margin-right: 1rem;
+  border: none;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  border-radius: .4rem;
 }
 
-.active:after {
-  content: "\2796";
+.send-btn:hover {
+  background-color: var(--primary-color-hover);
 }
 
+.redirect-exams {
+  background-color: var(--primary-color-hover);
+}
+
+.redirect-exams:hover {
+  background-color: var(--primary-color-hover);
+}
+
+
+.hide {
+  display: none;
+}
 
 
 

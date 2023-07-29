@@ -34,7 +34,7 @@ $ docker compose up
 Em outro terminal rode o comando abaixo para popular o banco de dados a partir do arquivo csv:
 
 ```
-$ docker exec -it rebase-labs-server-1 bash
+$ docker compose exec -it s2 bash
 ```
 ```
 $ ruby import_from_csv.rb
@@ -188,10 +188,8 @@ O objetivo aqui, neste passo, é carregar os dados de exames da API utilizando J
 ## **PREVIEW FEATURE 2:**
 
 ### Rota para acessar os exames no "frontend", configurado no servidor da aplicação 2:
-.
 
 ###  http://localhost:4002/results --> Acessar todos os exames no cliente da aplicação.
-.
 
 ### Layout página de exames com as abas de detalhes fechadas:
 
@@ -216,7 +214,7 @@ Adicionalmente, também criar, no HTML da listagem de exames, uma tag HTML `<for
 Você deve implementar o endpoint `/tests/:token` que permita que o usuário da API, ao fornecer o token do exame, possa ver os detalhes daquele exame no formato JSON, tal como está implementado no endpoint
 `/tests`. A consulta deve ser feita na base de dados.
 
-## **SOLUÇÃO FEATURE 3:**
+## **PREVIEW FEATURE 3:**
 
    ### Página com todos os exames (puxado do banco de dados), com input de pesquisa por token - http://localhost:4003/exams
 
@@ -226,4 +224,31 @@ Você deve implementar o endpoint `/tests/:token` que permita que o usuário da 
 
 ![aberto](img/Feature_3_Show.png)
 
+---
 
+### *[Enunciado Feature 4] Importar resultados de exames em formato CSV de forma assíncrona*
+Neste momento fazemos o import através de um script. Mas este script tem que ser executado por alguém developer ou admin do sistema.
+Para melhorar isto, idealmente qualquer usuário da API poderia chamar um endpoint para atualizar os dados. Assim, o endpoint deveria aceitar um arquivo CSV dinâmico e importar os dados para o PostgreSQL.
+Exemplo:
+
+$ POST /import
+
+Implementar endpoint para receber um CSV no HTTP request
+Neste passo, devemos focar apenas em receber o CSV via HTTP e utilizar o mesmo código do script de import para popular o database.
+
+Executar o import do endpoint de forma assíncrona em background
+Uma vez que fizemos o endpoint de POST /import, agora vamos focar numa implementação que permita que o usuário não fique à espera, ou seja, executar em um background job, mesmo o usuário sabendo que
+não vai ficar pronto imediatamente. Neste caso, o processo de import fica pronto eventualmente.
+
+Botão de "Importar CSV" na página Web em formato HTML
+Neste momento, o processo de importar o CSV está manual com chamada direta ao endpoint POST /import. Para simplificar a quem utiliza a plataforma, a página HTML com a listagem pode trazer um botão que faz a requisição com o upload do conteúdo do arquivo CSV.
+
+## **PREVIEW FEATURE 4:**
+
+   ### Página onde o usuário pode fazer o upload de um arquivo csv com dados dos exames - http://localhost:4004/upload
+
+![no_file](img/Upload_no_file.png)
+
+   ### Após enviar arquivo aparece botão para ver a página com todos os exames - http://localhost:4002/results
+
+![with_file](img/Upload_com_file.png)
