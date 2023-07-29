@@ -5,6 +5,7 @@ gem 'rack'
 gem 'pg'
 gem 'puma'
 gem 'redis'
+gem 'sidekiq'
 gem 'rack-cors'
 
 group :test do

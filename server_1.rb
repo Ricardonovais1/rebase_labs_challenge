@@ -3,8 +3,12 @@ require 'rack/handler/puma'
 require 'csv'
 require 'rack'
 require 'json'
+require 'sidekiq'
+require_relative 'public/feature_4/csv_importer'
 require_relative './public/feature_1/tests_all'
 require_relative './public/feature_1/exams_all'
+
+set :public_folder, File.dirname(__FILE__) + '/public/feature_4'
 
 before do
   headers 'Access-Control-Allow-Origin'  => 'http://localhost:4002',
@@ -20,6 +24,7 @@ get '/tests' do
   content_type :json
   TestsAll.get_all_tests
 end
+
 
 Rack::Handler::Puma.run(
   Sinatra::Application,
