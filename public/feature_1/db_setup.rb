@@ -8,6 +8,7 @@ db_config = {
 
 $connect_pg = PG.connect(db_config)
 
+
 $connect_pg.exec("CREATE TABLE IF NOT EXISTS patients (
   id SERIAL PRIMARY KEY,
   cpf VARCHAR(30) UNIQUE,
