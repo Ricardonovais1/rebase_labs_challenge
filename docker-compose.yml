@@ -10,6 +10,8 @@ services:
     command: bash -c "bundle install && ruby server_1.rb"
     environment:
       REDIS_URL: redis://redis:6379/0
+      APP_ENV: test
+      TEST_PORT: 4001
     ports:
       - "4001:4001"
     depends_on:
@@ -22,6 +24,8 @@ services:
       - .:/app
       - ./gems:/usr/local/bundle
     command: bash -c "bundle install && ruby server_2.rb"
+    environment:
+      TEST_PORT: 4002
     ports:
       - "4002:4002"
     depends_on:
@@ -34,6 +38,8 @@ services:
       - .:/app
       - ./gems:/usr/local/bundle
     command: bash -c "bundle install && ruby server_3.rb"
+    environment:
+      TEST_PORT: 4003
     ports:
       - "4003:4003"
     depends_on:
@@ -46,6 +52,8 @@ services:
       - .:/app
       - ./gems:/usr/local/bundle
     command: bash -c "bundle install && ruby server_4.rb"
+    environment:
+      TEST_PORT: 4004
     ports:
       - "4004:4004"
     depends_on:
@@ -73,6 +81,8 @@ services:
     command: bash -c "bundle exec sidekiq -r ./public/feature_4/csv_importer.rb"
     depends_on:
       - redis
+
+
 
 
 

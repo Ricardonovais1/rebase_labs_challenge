@@ -1,0 +1,24 @@
+#!/bin/bash
+
+SERVER_IMAGE="ruby"
+SERVER_CONTAINER_NAME="test_server"
+
+start_test_server() {
+  docker run --name $SERVER_CONTAINER_NAME -w /app -v $(pwd):/app -p 3001:3000 $SERVER_IMAGE bash -c "bundle install && ruby server_1.rb"
+}
+
+stop_test_server() {
+  docker stop $SERVER_CONTAINER_NAME
+}
+
+
+start_test_server
+# docker run \
+#   --rm \
+#   --name test_cont \
+#   -w /app \
+#   -v $(pwd):/app \
+#   -p 3000:3000 \
+#   ruby \
+#   bash -c "bundle install && start_test_server"
+

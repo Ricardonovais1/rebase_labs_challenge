@@ -15,8 +15,10 @@ before do
           'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
 end
 
+
 get '/exams' do
   content_type :json
+
   ExamsAll.get_all_exams
 end
 
@@ -25,9 +27,10 @@ get '/tests' do
   TestsAll.get_all_tests
 end
 
-
-Rack::Handler::Puma.run(
-  Sinatra::Application,
-  Port: 4001,
-  Host: '0.0.0.0'
-)
+if ENV['RACK_ENV'] != 'test'
+  Rack::Handler::Puma.run(
+    Sinatra::Application,
+    Port: 4001,
+    Host: '0.0.0.0'
+  )
+end
