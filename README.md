@@ -18,7 +18,7 @@ Uma app web para listagem de exames médicos.
 
 ### Requisitos de sistema
 
-* Ter Docker instalado para rodar os containers do projeto.
+* Docker
 
 ---
 
@@ -46,16 +46,6 @@ $ docker compose exec -it s2 bash
 ```
 ```
 $ ruby import_from_csv.rb
-```
----
-
-### Como resetar o banco de dados, apagando seus os dados das entidades "tests", "exams", "doctors", "patients"
-
-```
-$ docker compose exec -it s2 bash
-```
-```
-$ ruby spec/features/reset_database.rb
 ```
 ---
 
