@@ -3,13 +3,13 @@ require_relative 'db_setup'
 
 class DbPopulate
   def self.db_populate_from_csv(csv_file)
-    @db = PG.connect(host: 'postgres-proj', user: 'admin', password: 'password')
+    db = PG.connect(host: 'postgres-proj', user: 'admin', password: 'password')
     @exams_data = self.convert_csv_to_array_of_hashes(csv_file)
 
     @exams_data.each do |individual_test|
-      self.populate_patients_table(individual_test, @db)
-      self.populate_doctors_table(individual_test, @db)
-      self.populate_exams_and_tests_table(individual_test, @db)
+      self.populate_patients_table(individual_test, db)
+      self.populate_doctors_table(individual_test, db)
+      self.populate_exams_and_tests_table(individual_test, db)
     end
   end
 
@@ -27,10 +27,10 @@ class DbPopulate
   end
 
   def self.populate_patients_table(test, db)
-    @patient_not_in_table = db.exec('SELECT * FROM patients WHERE cpf = $1', [test['cpf']]).num_tuples.zero?
+    patient_not_in_table = db.exec_params('SELECT * FROM patients WHERE cpf = $1', [test['cpf']]).num_tuples.zero?
 
-    if @patient_not_in_table
-      db.exec('INSERT INTO patients (cpf, name, email, birthday, address, city, state) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+    if patient_not_in_table
+      db.exec_params('INSERT INTO patients (cpf, name, email, birthday, address, city, state) VALUES ($1, $2, $3, $4, $5, $6, $7)',
               [
                 test['cpf'],
                 test['nome paciente'],
@@ -44,10 +44,10 @@ class DbPopulate
   end
 
   def self.populate_doctors_table(test, db)
-    @doctor_not_in_table = db.exec('SELECT * FROM doctors WHERE crm = $1', [test['crm médico']]).num_tuples.zero?
+    doctor_not_in_table = db.exec_params('SELECT * FROM doctors WHERE crm = $1', [test['crm médico']]).num_tuples.zero?
 
-    if @doctor_not_in_table
-      db.exec('INSERT INTO doctors (crm, crm_state, name, email) VALUES ($1, $2, $3, $4)',
+    if doctor_not_in_table
+      db.exec_params('INSERT INTO doctors (crm, crm_state, name, email) VALUES ($1, $2, $3, $4)',
               [
                 test['crm médico'],
                 test['crm médico estado'],
@@ -59,13 +59,13 @@ class DbPopulate
 
   def self.populate_exams_and_tests_table(test, db)
     exam_token = test['token resultado exame']
-    exam_not_in_table = db.exec('SELECT * FROM exams WHERE token = $1', [exam_token]).num_tuples.zero?
+    exam_not_in_table = db.exec_params('SELECT * FROM exams WHERE token = $1', [exam_token]).num_tuples.zero?
 
     if exam_not_in_table
-      patient_id = db.exec('SELECT id FROM patients WHERE cpf = $1', [test['cpf']]).first&.fetch('id')&.to_i
-      doctor_id = db.exec('SELECT id FROM doctors WHERE crm = $1', [test['crm médico']]).first&.fetch('id')&.to_i
+      patient_id = db.exec_params('SELECT id FROM patients WHERE cpf = $1', [test['cpf']]).first&.fetch('id')&.to_i
+      doctor_id = db.exec_params('SELECT id FROM doctors WHERE crm = $1', [test['crm médico']]).first&.fetch('id')&.to_i
 
-      db.exec('INSERT INTO exams (token, result_date, patient_id, doctor_id) VALUES ($1, $2, $3, $4)',
+      db.exec_params('INSERT INTO exams (token, result_date, patient_id, doctor_id) VALUES ($1, $2, $3, $4)',
               [
                 test['token resultado exame'],
                 test['data exame'],
@@ -76,12 +76,12 @@ class DbPopulate
 
     tests_from_this_exam = @exams_data.select { |exam| exam['token resultado exame'] == exam_token }
 
-    test_not_in_table = db.exec('SELECT * FROM tests WHERE test_type = $1 AND token_id = $2', [test['tipo exame'], exam_token]).num_tuples.zero?
+    test_not_in_table = db.exec_params('SELECT * FROM tests WHERE test_type = $1 AND token_id = $2', [test['tipo exame'], exam_token]).num_tuples.zero?
 
     tests_from_this_exam.each do |single_test|
 
       if test_not_in_table
-        db.exec('INSERT INTO tests (test_type, limits, result, token_id) VALUES ($1, $2, $3, $4)',
+        db.exec_params('INSERT INTO tests (test_type, limits, result, token_id) VALUES ($1, $2, $3, $4)',
                 [
                   single_test['tipo exame'],
                   single_test['limites tipo exame'],

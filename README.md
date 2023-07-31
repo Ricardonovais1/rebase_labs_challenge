@@ -12,6 +12,14 @@ Uma app web para listagem de exames médicos.
 ![HTML](https://img.shields.io/badge/HTML-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
+
+---
+
+
+### Requisitos de sistema
+
+* Docker
+
 ---
 
 ### Como rodar o projeto
@@ -40,6 +48,20 @@ $ docker compose exec -it s2 bash
 $ ruby import_from_csv.rb
 ```
 ---
+
+### Como tests o projeto
+
+Até o momento temos testes apenas das API's de testes e de exames.
+
+(Considerando que todos os containers estejam sendo executados:)
+
+```
+$ docker compose exec -it s1 bash
+```
+```
+$ bundle exec rspec
+```
+---
 ## *[Enunciado Feature 1] Importar os dados do CSV para um database SQL*
 
 A primeira versão original da API deverá ter apenas um endpoint `/tests`, que lê os dados de um arquivo CSV e renderiza no formato JSON. Você deve _modificar_ este endpoint para que, ao invés de ler do CSV, faça a leitura **diretamente de uma base de dados SQL**.
@@ -58,7 +80,7 @@ Este passo de "importar" os dados do CSV para um **database SQL** (por ex. Postg
 
 Rotas para os endpoints do servidor 1:
 
-   ### * http://localhost:4001/tests --> Endpoint com todos os testes, reponse:
+#### * http://localhost:4001/tests --> Endpoint com todos os testes, reponse:
 
 ```
 [{
@@ -81,7 +103,7 @@ Rotas para os endpoints do servidor 1:
             "resultado": "97"
 }]
 ```
-   ### * http://localhost:4001/exams --> Endpoint com todos os exames e seus respectivos testes, response:
+   #### * http://localhost:4001/exams --> Endpoint com todos os exames e seus respectivos testes, response:
 
 ```
 [
@@ -187,15 +209,15 @@ O objetivo aqui, neste passo, é carregar os dados de exames da API utilizando J
 
 ## **PREVIEW FEATURE 2:**
 
-### Rota para acessar os exames no "frontend", configurado no servidor da aplicação 2:
+#### Rota para acessar os exames no "frontend", configurado no servidor da aplicação 2:
 
-###  http://localhost:4002/results --> Acessar todos os exames no cliente da aplicação.
+####  http://localhost:4002/results --> Acessar todos os exames no cliente da aplicação.
 
-### Layout página de exames com as abas de detalhes fechadas:
+#### Layout página de exames com as abas de detalhes fechadas:
 
 ![fechado](img/Exame_aba_fechada.png)
 
-### Layout página de exames com a abas de detalhes aberta:
+#### Layout página de exames com a abas de detalhes aberta:
 
 ![aberto](img/Exame_zoom.png)
 
@@ -216,11 +238,11 @@ Você deve implementar o endpoint `/tests/:token` que permita que o usuário da 
 
 ## **PREVIEW FEATURE 3:**
 
-   ### Página com todos os exames (puxado do banco de dados), com input de pesquisa por token - http://localhost:4003/exams
+#### Página com todos os exames (puxado do banco de dados), com input de pesquisa por token - http://localhost:4003/exams
 
 ![index](img/Feature_3_Index.png)
 
-   ### Página de detalhes do exame - http://localhost:4003/exams/:token
+#### Página de detalhes do exame - http://localhost:4003/exams/:token
 
 ![aberto](img/Feature_3_Show.png)
 
@@ -245,10 +267,10 @@ Neste momento, o processo de importar o CSV está manual com chamada direta ao e
 
 ## **PREVIEW FEATURE 4:**
 
-   ### Página onde o usuário pode fazer o upload de um arquivo csv com dados dos exames - http://localhost:4004/upload
+#### Página onde o usuário pode fazer o upload de um arquivo csv com dados dos exames - http://localhost:4004/upload
 
 ![no_file](img/Upload_no_file.png)
 
-   ### Após enviar arquivo aparece botão para ver a página com todos os exames - http://localhost:4002/results
+#### Após enviar arquivo aparece botão para ver a página com todos os exames - http://localhost:4002/results
 
 ![with_file](img/Upload_com_file.png)

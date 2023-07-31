@@ -7,6 +7,7 @@ gem 'puma'
 gem 'redis'
 gem 'sidekiq'
 gem 'rack-cors'
+gem 'activesupport'
 
 group :test do
   gem "rspec"
