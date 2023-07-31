@@ -49,7 +49,7 @@ $ ruby import_from_csv.rb
 ```
 ---
 
-### Como resetar o banco de dados, apagando seus os dados das entidades "tests", "exams", "doctors", "patients"
+### Como resetar o banco de dados, apagando os dados das entidades "tests", "exams", "doctors", "patients"
 
 ```
 $ docker compose exec -it s2 bash
