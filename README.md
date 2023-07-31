@@ -18,13 +18,13 @@ Uma app web para listagem de exames médicos.
 
 ### Requisitos de sistema
 
-* Docker
+* Ter Docker instalado para rodar os containers do projeto.
 
 ---
 
 ### Como rodar o projeto
 
-Escolha um diretório no seu computador e rode:
+Escolha um diretório no seu computador e execute o comando abaixo:
 
 ```
 $ git clone git@github.com:Ricardonovais1/rebase_labs_challenge.git
@@ -49,7 +49,17 @@ $ ruby import_from_csv.rb
 ```
 ---
 
-### Como tests o projeto
+### Como resetar o banco de dados, apagando seus os dados das entidades "tests", "exams", "doctors", "patients"
+
+```
+$ docker compose exec -it s2 bash
+```
+```
+$ ruby spec/features/reset_database.rb
+```
+---
+
+### Como testar o projeto
 
 Até o momento temos testes apenas das API's de testes e de exames.
 
